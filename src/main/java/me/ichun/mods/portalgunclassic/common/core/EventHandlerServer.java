@@ -5,6 +5,7 @@ import me.ichun.mods.portalgunclassic.common.block.BlockPortal;
 import me.ichun.mods.portalgunclassic.common.item.ItemPortalCore;
 import me.ichun.mods.portalgunclassic.common.item.ItemPortalGun;
 import me.ichun.mods.portalgunclassic.common.packet.PacketPortalStatus;
+import me.ichun.mods.portalgunclassic.common.portal.PortalInfo;
 import me.ichun.mods.portalgunclassic.common.sounds.SoundRegistry;
 import me.ichun.mods.portalgunclassic.common.world.PortalSavedData;
 import net.minecraft.block.Block;
@@ -16,6 +17,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+
+import java.util.HashMap;
 
 public class EventHandlerServer
 {
@@ -63,7 +66,8 @@ public class EventHandlerServer
     public void updatePlayerDimensionStatus(EntityPlayer player)
     {
         PortalSavedData data = getSaveData(player.getEntityWorld());
-        PortalGunClassic.channel.sendTo(new PacketPortalStatus(data.portalInfo.containsKey("blue"), data.portalInfo.containsKey("orange")), (EntityPlayerMP)player);
+        HashMap<String, PortalInfo> map = data.portalInfo.get(player.getEntityWorld().provider.getDimension());
+        PortalGunClassic.channel.sendTo(new PacketPortalStatus(map != null && map.containsKey("blue"), map != null && map.containsKey("orange")), (EntityPlayerMP)player);
     }
 
     public PortalSavedData getSaveData(World world)

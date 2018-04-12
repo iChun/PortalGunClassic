@@ -30,7 +30,11 @@ public class PortalInfo
             world.setBlockToAir(pos);
             if(portal.face.getAxis() != EnumFacing.Axis.Y)
             {
-                world.setBlockToAir(portal.top ? pos.down() : pos.up());
+                BlockPos offset = portal.top ? pos.down() : pos.up();
+                if(world.getTileEntity(offset) instanceof TileEntityPortal)
+                {
+                    world.setBlockToAir(offset);
+                }
             }
 
             world.playSound(null, pos.getX() + (portal.face.getAxis() != EnumFacing.Axis.Y ? 1D : 0.5D), pos.getY() + (portal.face.getAxis() == EnumFacing.Axis.Y ? 0.0D : 0.5D), pos.getZ() + (portal.face.getAxis() != EnumFacing.Axis.Y ? 1D : 0.5D), SoundRegistry.fizzle, SoundCategory.BLOCKS, 0.3F, 1F);

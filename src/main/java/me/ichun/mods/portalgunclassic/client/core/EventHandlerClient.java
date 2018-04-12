@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -34,6 +35,12 @@ public class EventHandlerClient
     public boolean keyResetDown = false;
 
     public PortalStatus status = null;
+    public int teleportCooldown = 0;
+
+    public boolean justTeleported = false;
+    public double mX = 0D;
+    public double mY = 0D;
+    public double mZ = 0D;
 
     @SubscribeEvent
     public void onModelRegistry(ModelRegistryEvent event)
@@ -63,6 +70,24 @@ public class EventHandlerClient
                 keyResetDown = keyReset.isKeyDown();
             }
         }
+        else
+        {
+            Minecraft mc = Minecraft.getMinecraft();
+            if(teleportCooldown > 0 && !mc.isGamePaused())
+            {
+                teleportCooldown--;
+            }
+            if(justTeleported)
+            {
+                if(mc.player != null && mc.player.motionX == 0.0D && mc.player.motionY == 0.0D && mc.player.motionZ == 0.0D)
+                {
+                    justTeleported = false;
+                    mc.player.motionX = mX;
+                    mc.player.motionY = mY;
+                    mc.player.motionZ = mZ;
+                }
+            }
+        }
     }
 
     @SubscribeEvent
@@ -71,29 +96,38 @@ public class EventHandlerClient
         if(event.phase == TickEvent.Phase.END)
         {
             Minecraft mc = Minecraft.getMinecraft();
-            if(mc.player != null && (mc.player.getHeldItemMainhand().getItem() == PortalGunClassic.itemPortalGun || mc.player.getHeldItemOffhand().getItem() == PortalGunClassic.itemPortalGun))
+            if(mc.currentScreen == null && !mc.gameSettings.hideGUI && mc.player != null && (mc.player.getHeldItemMainhand().getItem() == PortalGunClassic.itemPortalGun || mc.player.getHeldItemOffhand().getItem() == PortalGunClassic.itemPortalGun))
             {
                 //is holding a portal gun
-                ScaledResolution reso = new ScaledResolution(mc);
-                double size = 30;
-                double x1 = reso.getScaledWidth() / 2D - size;
-                double x2 = reso.getScaledWidth() / 2D + size;
-                double y1 = reso.getScaledHeight() / 2D - size;
-                double y2 = reso.getScaledHeight() / 2D + size;
 
-                mc.getTextureManager().bindTexture(txLEmpty);
+                GlStateManager.enableBlend();
+                GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+
+                ScaledResolution reso = new ScaledResolution(mc);
+                double size = 40;
+                double x1 = reso.getScaledWidth() / 2D - size + 1;
+                double x2 = reso.getScaledWidth() / 2D + size + 1;
+                double y1 = reso.getScaledHeight() / 2D - size + 1;
+                double y2 = reso.getScaledHeight() / 2D + size + 1;
 
                 Tessellator tessellator = Tessellator.getInstance();
                 BufferBuilder bufferbuilder = tessellator.getBuffer();
 
+                mc.getTextureManager().bindTexture(status != null && status.blue ? txLFull : txLEmpty);
                 bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-                bufferbuilder.pos(x1, y1, 0.0D).tex(0D, 1D).color(5, 130, 255, 255).endVertex();
-                bufferbuilder.pos(x2, y1, 0.0D).tex(1D, 1D).color(5, 130, 255, 255).endVertex();
-                bufferbuilder.pos(x2, y2, 0.0D).tex(1D, 0D).color(5, 130, 255, 255).endVertex();
-                bufferbuilder.pos(x1, y2, 0.0D).tex(0D, 0D).color(5, 130, 255, 255).endVertex();
+                bufferbuilder.pos(x2, y2, 0.0D).tex(1D, 1D).color(5, 130, 255, 255).endVertex();
+                bufferbuilder.pos(x2, y1, 0.0D).tex(1D, 0D).color(5, 130, 255, 255).endVertex();
+                bufferbuilder.pos(x1, y1, 0.0D).tex(0D, 0D).color(5, 130, 255, 255).endVertex();
+                bufferbuilder.pos(x1, y2, 0.0D).tex(0D, 1D).color(5, 130, 255, 255).endVertex();
                 tessellator.draw();
 
-                //Orange = 255, 176, 6, 255
+                mc.getTextureManager().bindTexture(status != null && status.orange ? txRFull : txREmpty);
+                bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+                bufferbuilder.pos(x2, y2, 0.0D).tex(1D, 1D).color(255, 176, 6, 255).endVertex();
+                bufferbuilder.pos(x2, y1, 0.0D).tex(1D, 0D).color(255, 176, 6, 255).endVertex();
+                bufferbuilder.pos(x1, y1, 0.0D).tex(0D, 0D).color(255, 176, 6, 255).endVertex();
+                bufferbuilder.pos(x1, y2, 0.0D).tex(0D, 1D).color(255, 176, 6, 255).endVertex();
+                tessellator.draw();
             }
         }
     }
@@ -102,5 +136,6 @@ public class EventHandlerClient
     public void onConnectToServerEvent(FMLNetworkEvent.ClientConnectedToServerEvent event)
     {
         status = null;
+        justTeleported = false;
     }
 }

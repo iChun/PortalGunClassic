@@ -35,12 +35,12 @@ public class PacketPortalStatus implements IMessage
         buf.writeBoolean(orange);
     }
 
-    public static class Handler implements IMessageHandler
+    public static class Handler implements IMessageHandler<PacketPortalStatus, IMessage>
     {
         @Override
-        public IMessage onMessage(IMessage message, MessageContext ctx)
+        public IMessage onMessage(PacketPortalStatus message, MessageContext ctx)
         {
-            PortalGunClassic.eventHandlerClient.status = new PortalStatus(((PacketPortalStatus)message).blue, ((PacketPortalStatus)message).orange);
+            PortalGunClassic.eventHandlerClient.status = new PortalStatus(message.blue, message.orange);
             return null;
         }
     }

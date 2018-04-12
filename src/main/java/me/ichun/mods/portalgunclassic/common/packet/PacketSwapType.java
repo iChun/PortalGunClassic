@@ -2,9 +2,12 @@ package me.ichun.mods.portalgunclassic.common.packet;
 
 import io.netty.buffer.ByteBuf;
 import me.ichun.mods.portalgunclassic.common.PortalGunClassic;
+import me.ichun.mods.portalgunclassic.common.sounds.SoundRegistry;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -37,13 +40,13 @@ public class PacketSwapType implements IMessage
         buf.writeInt(type);
     }
 
-    public static class Handler implements IMessageHandler
+    public static class Handler implements IMessageHandler<PacketSwapType, IMessage>
     {
         @Override
-        public IMessage onMessage(IMessage message, MessageContext ctx)
+        public IMessage onMessage(PacketSwapType message, MessageContext ctx)
         {
             EntityPlayerMP player = ctx.getServerHandler().player;
-            if(!((PacketSwapType)message).reset)
+            if(!message.reset)
             {
                 for(EnumHand hand : EnumHand.values())
                 {
@@ -56,8 +59,7 @@ public class PacketSwapType implements IMessage
             }
             else
             {
-                PacketSwapType pkt = (PacketSwapType)message;
-                if(pkt.type == 0)
+                if(message.type == 0)
                 {
                     PortalGunClassic.eventHandlerServer.getSaveData(player.world).kill(player.world, false);
                     PortalGunClassic.eventHandlerServer.getSaveData(player.world).kill(player.world, true);
@@ -73,6 +75,7 @@ public class PacketSwapType implements IMessage
                         }
                     }
                 }
+                player.getEntityWorld().playSound(null, player.posX, player.posY + player.getEyeHeight(), player.posZ, SoundRegistry.reset, SoundCategory.PLAYERS, 0.3F, 1.0F);
             }
             return null;
         }
