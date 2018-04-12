@@ -1,7 +1,6 @@
 package me.ichun.mods.portalgunclassic.common.packet;
 
 import io.netty.buffer.ByteBuf;
-import me.ichun.mods.portalgunclassic.client.portal.PortalStatus;
 import me.ichun.mods.portalgunclassic.common.PortalGunClassic;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;

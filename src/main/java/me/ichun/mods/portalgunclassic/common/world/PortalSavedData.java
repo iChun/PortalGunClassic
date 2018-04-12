@@ -3,7 +3,6 @@ package me.ichun.mods.portalgunclassic.common.world;
 import me.ichun.mods.portalgunclassic.common.PortalGunClassic;
 import me.ichun.mods.portalgunclassic.common.packet.PacketPortalStatus;
 import me.ichun.mods.portalgunclassic.common.portal.PortalInfo;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

@@ -1,7 +1,9 @@
 package me.ichun.mods.portalgunclassic.client.render;
 
 import me.ichun.mods.portalgunclassic.common.tileentity.TileEntityPortal;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.EnumFacing;

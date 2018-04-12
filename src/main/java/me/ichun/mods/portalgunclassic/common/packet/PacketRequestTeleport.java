@@ -1,23 +1,15 @@
 package me.ichun.mods.portalgunclassic.common.packet;
 
 import io.netty.buffer.ByteBuf;
-import me.ichun.mods.portalgunclassic.client.portal.PortalStatus;
 import me.ichun.mods.portalgunclassic.common.PortalGunClassic;
 import me.ichun.mods.portalgunclassic.common.portal.PortalInfo;
 import me.ichun.mods.portalgunclassic.common.tileentity.TileEntityPortal;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.NetHandlerPlayServer;
-import net.minecraft.network.play.server.SPacketPlayerPosLook;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-
-import java.util.EnumSet;
 
 public class PacketRequestTeleport implements IMessage
 {

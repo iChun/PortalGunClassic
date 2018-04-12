@@ -1,9 +1,7 @@
 package me.ichun.mods.portalgunclassic.common.block;
 
 import me.ichun.mods.portalgunclassic.common.PortalGunClassic;
-import me.ichun.mods.portalgunclassic.common.portal.PortalInfo;
 import me.ichun.mods.portalgunclassic.common.tileentity.TileEntityPortal;
-import me.ichun.mods.portalgunclassic.common.world.PortalSavedData;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;

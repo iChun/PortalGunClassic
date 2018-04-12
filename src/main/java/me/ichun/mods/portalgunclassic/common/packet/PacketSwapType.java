@@ -5,7 +5,6 @@ import me.ichun.mods.portalgunclassic.common.PortalGunClassic;
 import me.ichun.mods.portalgunclassic.common.sounds.SoundRegistry;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
