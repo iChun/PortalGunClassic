@@ -1,0 +1,6 @@
+{
+  "parent": "builtin/generated",
+  "textures": {
+    "all": "portalgunclassic:blocks/dummytexture"
+  }
+}

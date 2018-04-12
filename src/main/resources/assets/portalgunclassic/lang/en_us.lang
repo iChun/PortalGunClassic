@@ -1,0 +1,13 @@
+subtitles.portalgunclassic.enter=Entity entered portal
+subtitles.portalgunclassic.exit=Entity exited portal
+subtitles.portalgunclassic.fizzle=Portal closing
+subtitles.portalgunclassic.invalid=Portal failed to open
+subtitles.portalgunclassic.open=Portal opening
+subtitles.portalgunclassic.fire=Portal gun firing
+subtitles.portalgunclassic.reset=Portal gun resetting
+subtitles.portalgunclassic.active=Portal gun equipping
+
+item.portalgunclassic.item.portalgun.name=Portal Gun
+
+key.portalgunclassic.switch=Switch Portal Gun Type
+key.categories.portalgun=Portal Gun

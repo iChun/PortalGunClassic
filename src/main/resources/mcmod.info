@@ -1,0 +1,21 @@
+[
+{
+  "modid" : "portalgunclassic",
+  "name" : "PortalGunClassic",
+  "version" : "${version}",
+  "url" : "http://ichun.me/mods/portal-gun-classic/",
+  "credits" : "",
+  "authorList": [
+    "iChun"
+  ],
+  "description": "A remake of the first Portal Gun mod released in 2011.",
+  "logoFile" : "",
+  "updateUrl" : "",
+  "parent" : "",
+  "screenshots": [
+  ],
+  "dependencies": [
+    "Forge"
+  ]
+}
+]

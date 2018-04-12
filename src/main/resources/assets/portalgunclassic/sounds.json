@@ -1,0 +1,84 @@
+{
+  "enter": {
+    "category": "block",
+    "sounds": [
+      "portalgunclassic:portal_enter_01",
+      "portalgunclassic:portal_enter_02",
+      "portalgunclassic:portal_enter_03"
+    ],
+    "subtitle": "subtitles.portalgunclassic.enter"
+  },
+  "exit": {
+    "category": "block",
+    "sounds": [
+      "portalgunclassic:portal_exit_01",
+      "portalgunclassic:portal_exit_02"
+    ],
+    "subtitle": "subtitles.portalgunclassic.exit"
+  },
+  "fizzle": {
+    "category": "block",
+    "sounds": [
+      "portalgunclassic:portal_fizzle_01",
+      "portalgunclassic:portal_fizzle_02"
+    ],
+    "subtitle": "subtitles.portalgunclassic.fizzle"
+  },
+  "invalid": {
+    "category": "neutral",
+    "sounds": [
+      "portalgunclassic:portal_invalid_01",
+      "portalgunclassic:portal_invalid_02",
+      "portalgunclassic:portal_invalid_03",
+      "portalgunclassic:portal_invalid_04"
+    ],
+    "subtitle": "subtitles.portalgunclassic.invalid"
+  },
+  "openblue": {
+    "category": "block",
+    "sounds": [
+      "portalgunclassic:portal_open_blue_01"
+    ],
+    "subtitle": "subtitles.portalgunclassic.open"
+  },
+  "openred": {
+    "category": "block",
+    "sounds": [
+      "portalgunclassic:portal_open_red_01",
+      "portalgunclassic:portal_open_red_02"
+    ],
+    "subtitle": "subtitles.portalgunclassic.open"
+  },
+  "fireblue": {
+    "category": "player",
+    "sounds": [
+      "portalgunclassic:wpn_portal_gun_fire_b01",
+      "portalgunclassic:wpn_portal_gun_fire_b02",
+      "portalgunclassic:wpn_portal_gun_fire_b03"
+    ],
+    "subtitle": "subtitles.portalgunclassic.fire"
+  },
+  "firered": {
+    "category": "player",
+    "sounds": [
+      "portalgunclassic:wpn_portal_gun_fire_r01",
+      "portalgunclassic:wpn_portal_gun_fire_r02",
+      "portalgunclassic:wpn_portal_gun_fire_r03"
+    ],
+    "subtitle": "subtitles.portalgunclassic.fire"
+  },
+  "reset": {
+    "category": "player",
+    "sounds": [
+      "portalgunclassic:wpn_portal_reset_01"
+    ],
+    "subtitle": "subtitles.portalgunclassic.reset"
+  },
+  "active": {
+    "category": "player",
+    "sounds": [
+      "portalgunclassic:wpn_portalgun_active_01"
+    ],
+    "subtitle": "subtitles.portalgunclassic.active"
+  }
+}
