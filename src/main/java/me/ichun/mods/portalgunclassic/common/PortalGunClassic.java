@@ -31,6 +31,7 @@ public class PortalGunClassic
     public static EventHandlerServer eventHandlerServer;
 
     public static Item itemPortalGun;
+    public static Item itemPortalCore;
 
     public static Block blockPortalGun;
 

@@ -324,7 +324,7 @@ public class EntityPortalProjectile extends Entity
                         ((TileEntityPortal)te).setup(false, isOrange(), rayTraceResult.sideHit);
                     }
                 }
-                PortalGunClassic.eventHandlerServer.getSaveData(world).set(isOrange(), rayTraceResult.sideHit.getAxis() != EnumFacing.Axis.Y ? pos.down() : pos);
+                PortalGunClassic.eventHandlerServer.getSaveData(world).set(world, isOrange(), rayTraceResult.sideHit.getAxis() != EnumFacing.Axis.Y ? pos.down() : pos);
 
                 world.playSound(null, this.posX, this.posY + (this.height / 2F), this.posZ, isOrange() ? SoundRegistry.openred : SoundRegistry.openblue, SoundCategory.BLOCKS, 0.3F, 1.0F);
             }

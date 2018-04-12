@@ -2,6 +2,7 @@ package me.ichun.mods.portalgunclassic.common.core;
 
 import me.ichun.mods.portalgunclassic.common.PortalGunClassic;
 import me.ichun.mods.portalgunclassic.common.entity.EntityPortalProjectile;
+import me.ichun.mods.portalgunclassic.common.packet.PacketPortalStatus;
 import me.ichun.mods.portalgunclassic.common.packet.PacketSwapType;
 import me.ichun.mods.portalgunclassic.common.tileentity.TileEntityPortal;
 import net.minecraft.util.ResourceLocation;
@@ -24,5 +25,7 @@ public class ProxyCommon
 
         PortalGunClassic.channel = new SimpleNetworkWrapper(PortalGunClassic.MOD_NAME);
         PortalGunClassic.channel.registerMessage(new PacketSwapType.Handler(), PacketSwapType.class, 0, Side.SERVER);
+        PortalGunClassic.channel.registerMessage(new PacketPortalStatus.Handler(), PacketPortalStatus.class, 1, Side.CLIENT);
+
     }
 }

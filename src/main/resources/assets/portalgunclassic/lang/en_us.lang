@@ -8,6 +8,7 @@ subtitles.portalgunclassic.reset=Portal gun resetting
 subtitles.portalgunclassic.active=Portal gun equipping
 
 item.portalgunclassic.item.portalgun.name=Portal Gun
+item.portalgunclassic.item.portal_core.name=Portal Core
 
 key.portalgunclassic.switch=Switch Portal Gun Type
 key.categories.portalgun=Portal Gun

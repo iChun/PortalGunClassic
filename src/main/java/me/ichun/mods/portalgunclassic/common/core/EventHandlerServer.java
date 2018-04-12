@@ -2,19 +2,20 @@ package me.ichun.mods.portalgunclassic.common.core;
 
 import me.ichun.mods.portalgunclassic.common.PortalGunClassic;
 import me.ichun.mods.portalgunclassic.common.block.BlockPortal;
+import me.ichun.mods.portalgunclassic.common.item.ItemPortalCore;
 import me.ichun.mods.portalgunclassic.common.item.ItemPortalGun;
+import me.ichun.mods.portalgunclassic.common.packet.PacketPortalStatus;
 import me.ichun.mods.portalgunclassic.common.sounds.SoundRegistry;
 import me.ichun.mods.portalgunclassic.common.world.PortalSavedData;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-
-import java.util.HashMap;
 
 public class EventHandlerServer
 {
@@ -30,6 +31,9 @@ public class EventHandlerServer
     {
         PortalGunClassic.itemPortalGun = new ItemPortalGun();
         event.getRegistry().register(PortalGunClassic.itemPortalGun);
+
+        PortalGunClassic.itemPortalCore = new ItemPortalCore();
+        event.getRegistry().register(PortalGunClassic.itemPortalCore);
     }
 
     @SubscribeEvent
@@ -59,7 +63,7 @@ public class EventHandlerServer
     public void updatePlayerDimensionStatus(EntityPlayer player)
     {
         PortalSavedData data = getSaveData(player.getEntityWorld());
-        PortalGunClassic.channel
+        PortalGunClassic.channel.sendTo(new PacketPortalStatus(data.portalInfo.containsKey("blue"), data.portalInfo.containsKey("orange")), (EntityPlayerMP)player);
     }
 
     public PortalSavedData getSaveData(World world)
@@ -67,7 +71,7 @@ public class EventHandlerServer
         PortalSavedData data = (PortalSavedData)world.loadData(PortalSavedData.class, PortalSavedData.DATA_ID);
         if(data == null)
         {
-            data = new PortalSavedData();
+            data = new PortalSavedData(PortalSavedData.DATA_ID);
             world.setData(PortalSavedData.DATA_ID, data);
             data.markDirty();
         }

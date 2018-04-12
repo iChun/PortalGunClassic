@@ -1,5 +1,7 @@
 package me.ichun.mods.portalgunclassic.common.world;
 
+import me.ichun.mods.portalgunclassic.common.PortalGunClassic;
+import me.ichun.mods.portalgunclassic.common.packet.PacketPortalStatus;
 import me.ichun.mods.portalgunclassic.common.portal.PortalInfo;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
@@ -14,15 +16,16 @@ public class PortalSavedData extends WorldSavedData
 
     public HashMap<String, PortalInfo> portalInfo = new HashMap<>();
 
-    public PortalSavedData()
+    public PortalSavedData(String identifier)
     {
-        super("PortalGunClassic");
+        super(identifier);
     }
 
-    public void set(boolean orange, BlockPos pos)
+    public void set(World world, boolean orange, BlockPos pos)
     {
         portalInfo.put(orange ? "orange" : "blue", new PortalInfo(orange, pos));
         markDirty();
+        PortalGunClassic.channel.sendToDimension(new PacketPortalStatus(portalInfo.containsKey("blue"), portalInfo.containsKey("orange")), world.provider.getDimension());
     }
 
     public void kill(World world, boolean orange)
@@ -33,6 +36,7 @@ public class PortalSavedData extends WorldSavedData
             info.kill(world);
             portalInfo.remove(orange ? "orange" : "blue");
             markDirty();
+            PortalGunClassic.channel.sendToDimension(new PacketPortalStatus(portalInfo.containsKey("blue"), portalInfo.containsKey("orange")), world.provider.getDimension());
         }
     }
 
