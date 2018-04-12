@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 @Mod(modid = PortalGunClassic.MOD_ID, name = PortalGunClassic.MOD_NAME,
         version = PortalGunClassic.VERSION,
-        dependencies = "required-after:forge@[14.23.2.2638,)",
+        dependencies = "required-after:forge@[14.23.2.2624,)",
         acceptedMinecraftVersions = "[1.12,1.13)"
 )
 public class PortalGunClassic

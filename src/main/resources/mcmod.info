@@ -3,8 +3,8 @@
   "modid" : "portalgunclassic",
   "name" : "PortalGunClassic",
   "version" : "${version}",
-  "url" : "http://ichun.me/mods/portal-gun-classic/",
-  "credits" : "",
+  "url" : "http://ichun.me/mods/portalgun/",
+  "credits" : "Valve, for Portal, Portal 2 and the sounds and concept used in the mod.",
   "authorList": [
     "iChun"
   ],
